@@ -3,10 +3,11 @@ package com.kforce.urbanic.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.kforce.urbanic.ui.main.MainActivity
+import com.kforce.urbanic.ui.MainActivity
+import com.kforce.urbanic.ui.core.BaseActivity
 
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

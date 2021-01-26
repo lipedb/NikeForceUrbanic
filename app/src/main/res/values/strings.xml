@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">com.kforce.urbanic</string>
+    <string name="loading_configs">Loading Configurations</string>
 </resources>

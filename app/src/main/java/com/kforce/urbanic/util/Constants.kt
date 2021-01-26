@@ -9,3 +9,6 @@ const val URL_SEPARATOR = "/"
 const val WHITE_SPACE = " "
 
 const val REQUEST_SUCCEEDED = 200
+
+//Custom View Animations
+const val DEFAULT_TRANSACTION_DURATION: Long = 300

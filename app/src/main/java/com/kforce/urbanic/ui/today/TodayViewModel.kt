@@ -1,4 +1,4 @@
-package com.kforce.urbanic.ui.main
+package com.kforce.urbanic.ui.today
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -7,10 +7,8 @@ import com.kforce.urbanic.repository.content.ContentImplementation
 import com.kforce.urbanic.service.content.ContentService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.function.Consumer
 
-
-class MainViewModel : ViewModel() {
+class TodayViewModel : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

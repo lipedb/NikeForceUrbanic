@@ -26,11 +26,7 @@ class ContentService {
         return when (requestResponse.code){
             REQUEST_SUCCEEDED -> {
                 val baseSettings: BaseSettings = GsonBuilder().create().fromJson(requestResponse.body, BaseSettings::class.java)
-                Resource(
-                    status = Resource.Status.ERROR, data = baseSettings, throwable = NetworkErrorException(
-                        requestResponse.exception
-                    )
-                )
+                Resource(status = Resource.Status.SUCCESS, data = baseSettings, throwable = null)
             }
             else -> Resource(
                 status = Resource.Status.ERROR, data = null, throwable = NetworkErrorException(

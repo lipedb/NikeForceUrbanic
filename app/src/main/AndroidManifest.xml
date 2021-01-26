@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Comkforceurbanic">
-        <activity android:name="com.kforce.urbanic.ui.main.MainActivity"/>
+        <activity android:name="com.kforce.urbanic.ui.MainActivity"/>
         <activity
             android:name="com.kforce.urbanic.ui.splash.SplashActivity"
             android:theme="@style/SplashTheme"
