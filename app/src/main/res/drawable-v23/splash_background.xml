@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/ic_app_logo_background"/>
+    <item android:drawable="@mipmap/ic_app_logo"
+        android:gravity="center_vertical|center_horizontal"
+        android:width="200dp"
+        android:height="200dp"/>
+</layer-list>

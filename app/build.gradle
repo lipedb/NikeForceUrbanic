@@ -1,0 +1,112 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId "com.kforce.urbanic"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
+dependencies {
+    //region General
+    // Kotlin standard library
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+
+    // Android UI and appcompat
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    // Room for database
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // network & serialization
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_gson_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //endregion
+    //region Kapt
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    //endregion
+    //region Debug
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    //endregion
+    //region Test
+    implementation "junit:junit:$junit_version"
+
+    // Coroutines testing
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version"
+
+    // mocks
+    implementation "org.mockito:mockito-core:2.23.0"
+    //endregion
+    //region Android test
+    implementation "junit:junit:$junit_version"
+    implementation "androidx.test:runner:$androidx_test_version"
+    implementation "androidx.test:rules:$androidx_test_version"
+
+    // Espresso
+    implementation "androidx.test.espresso:espresso-core:$expresso_version"
+    implementation "androidx.test.espresso:espresso-contrib:$expresso_version"
+    implementation "androidx.test.espresso:espresso-intents:$expresso_version"
+
+    //  Architecture Components testing libraries
+    implementation "androidx.work:work-testing:$work_version"
+
+    // Coroutines testing
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version"
+    //endregion
+}
