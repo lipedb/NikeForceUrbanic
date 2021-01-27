@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item format="float" name="start_guideline" type="dimen">0.1</item>
+    <item format="float" name="start_margin_guideline" type="dimen">0.05</item>
     <item format="float" name="end_guideline" type="dimen">0.9</item>
+    <item format="float" name="end_margin_guideline" type="dimen">0.95</item>
+    <dimen name="search_view_size">70dp</dimen>
 </resources>

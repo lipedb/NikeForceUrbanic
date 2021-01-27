@@ -1,15 +1,16 @@
 package com.kforce.urbanic.ui.core
 
+import android.R.attr.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kforce.urbanic.ui.loading.LoadingViewModel
-import com.kforce.urbanix.R
 import kotlin.reflect.KClass
 
 
@@ -23,6 +24,7 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes val layout: Int, private 
     open lateinit var viewModel: VM
 
     protected val parentActivity by lazy { activity as BaseActivity }
+
 
     /**
      * set toolbar visibility and background image
@@ -41,6 +43,12 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes val layout: Int, private 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(viewModelClass.java)
+    }
+
+    fun navigateToFragment(targetFragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(this.id, targetFragment)
+        transaction.commit()
     }
 
 }

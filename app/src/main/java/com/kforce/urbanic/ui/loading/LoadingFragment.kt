@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.kforce.urbanic.extension.toGone
 import com.kforce.urbanic.extension.toVisible
 import com.kforce.urbanic.ui.core.BaseFragment
+import com.kforce.urbanic.ui.search.SearchFragment
 import com.kforce.urbanix.R
 import kotlinx.android.synthetic.main.loading_fragment.*
 
@@ -27,7 +28,7 @@ class LoadingFragment : BaseFragment<LoadingViewModel>(R.layout.loading_fragment
         stateObserver = Observer {
             it ?: return@Observer
             when (it) {
-               is LoadingState.OnConfigurationLoaded -> navigateToSearch()
+               is LoadingState.OnConfigurationLoaded -> navigateTodayFragment()
                is LoadingState.OnConfigurationRetrieving -> setLoadingState(isLoading = true)
                is LoadingState.OnConfigurationError -> navigateToError()
             }
@@ -35,9 +36,9 @@ class LoadingFragment : BaseFragment<LoadingViewModel>(R.layout.loading_fragment
         viewModel.state.observe(viewLifecycleOwner, stateObserver)
     }
 
-    private fun navigateToSearch() {
+    private fun navigateTodayFragment() {
         setLoadingState(isLoading = false)
-
+        navigateToFragment(SearchFragment.newInstance())
     }
 
     private fun navigateToError() {

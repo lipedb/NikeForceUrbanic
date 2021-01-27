@@ -8,6 +8,8 @@ const val URL_SEPARATOR = "/"
 
 const val WHITE_SPACE = " "
 
+const val PATH_RESOURCE = "android.resource://"
+
 const val REQUEST_SUCCEEDED = 200
 
 //Custom View Animations
