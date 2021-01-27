@@ -5,6 +5,7 @@
     <string name="title_error">Oh no!!!</string>
     <string name="search_error">No results found</string>
     <string name="search_cancel">Cancel</string>
+    <string name="definition_example">Example:\u0020</string>
 
     <!-- Rotation Angles -->
     <string name="right_angle">90</string>

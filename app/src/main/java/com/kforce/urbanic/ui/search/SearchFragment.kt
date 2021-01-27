@@ -38,6 +38,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
         setupEventObservers()
         setupListeners()
         setupRecyclerView()
+        viewModel.onInitRoutine()
     }
 
     /**
@@ -80,7 +81,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
                 when (it) {
                     SearchScreenState.OnIdleScreenStateTriggered -> setScreenAsIdle()
                     SearchScreenState.OnSearchScreenStateTriggered -> setScreenAsSearch()
-                    // SearchState.OnViewStateTriggered -> TODO()
+                    SearchScreenState.OnViewScreenStateTriggered -> setScreenAsView()
                     SearchScreenState.OnResultRetrieving -> setScreenAsLoading()
                     SearchScreenState.OnResultError -> setScreenAsError()
                 }
@@ -92,7 +93,6 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
         super.onResume()
         setupBackgroundVideo()
         handleEnterKeyNavigation(simple_search_view)
-        viewModel.onInitRoutine()
     }
 
     private fun setupBackgroundVideo() {
@@ -109,6 +109,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
     }
 
     private fun setScreenAsIdle(){
+        recycler_view_definition_items.toGone()
         search_group.toGone()
         loading_screen.toGone(false)
         floating_action.setImageDrawable(
@@ -125,6 +126,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
     }
 
     private fun setScreenAsSearch(){
+        recycler_view_definition_items.toGone()
         search_group.toVisible()
         back_button.setOnClickListener { viewModel.onSearchCancelCommand() }
         loading_screen.toGone(false)
@@ -134,6 +136,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
     }
 
     private fun setScreenAsError() {
+        recycler_view_definition_items.toGone()
         search_group.toGone()
         loading_screen.toGone(false)
         video_background_poster.toGone()
@@ -145,6 +148,22 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
                 )
             )
         floating_action.setOnClickListener { viewModel.onSearchCancelCommand() }
+        floating_action.toVisible()
+    }
+
+    private fun setScreenAsView() {
+        search_group.toVisible()
+        loading_screen.toGone(false)
+        video_background_poster.toGone()
+        empty_result_placeholder.toGone()
+        floating_action.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireActivity(),
+                R.drawable.ic_sort
+            )
+        )
+        floating_action.setOnClickListener { viewModel.onSortCommand() }
+        recycler_view_definition_items.toVisible()
         floating_action.toVisible()
     }
 
