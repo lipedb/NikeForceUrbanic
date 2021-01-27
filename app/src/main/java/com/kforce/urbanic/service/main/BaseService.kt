@@ -2,8 +2,7 @@
 
 package com.kforce.urbanic.service.main
 
-import com.kforce.urbanic.repository.main.RemoteResponse
-import com.kforce.urbanic.repository.main.Resource
+import com.kforce.urbanic.repository.core.RemoteResponse
 import com.kforce.urbanic.util.EMPTY_STRING
 import com.kforce.urbanic.util.RESPONSE_ERROR
 import org.apache.http.client.methods.HttpGet

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">com.kforce.urbanic</string>
-    <string name="loading_configs">Loading Configurations</string>
-    <string name="search_placeholder">Search Something to start</string>
+    <string name="loading_configs">Loading...</string>
+    <string name="search_placeholder">Search here</string>
+    <string name="search_error">No results found</string>
     <string name="search_cancel">Cancel</string>
 </resources>

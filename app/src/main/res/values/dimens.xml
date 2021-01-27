@@ -5,4 +5,5 @@
     <item format="float" name="end_guideline" type="dimen">0.9</item>
     <item format="float" name="end_margin_guideline" type="dimen">0.95</item>
     <dimen name="search_view_size">70dp</dimen>
+    <dimen name="search_bar_edge_ignore">5dp</dimen>
 </resources>

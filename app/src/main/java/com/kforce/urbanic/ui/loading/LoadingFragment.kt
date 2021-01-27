@@ -44,6 +44,7 @@ class LoadingFragment : BaseFragment<LoadingViewModel>(R.layout.loading_fragment
     private fun navigateToError() {
         setLoadingState(isLoading = false)
         //TODO: Implement redirect to error Screen
+        navigateToFragment(SearchFragment.newInstance())
     }
 
     private fun setLoadingState(isLoading : Boolean = false) = when {

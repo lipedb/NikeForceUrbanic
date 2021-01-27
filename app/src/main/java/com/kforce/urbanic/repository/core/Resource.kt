@@ -1,4 +1,4 @@
-package com.kforce.urbanic.repository.main
+package com.kforce.urbanic.repository.core
 
 /**
  * A generic class that holds the repository's result value with its loading status.

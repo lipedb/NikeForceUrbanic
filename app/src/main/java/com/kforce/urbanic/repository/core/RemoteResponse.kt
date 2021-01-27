@@ -1,4 +1,4 @@
-package com.kforce.urbanic.repository.main
+package com.kforce.urbanic.repository.core
 
 /**
  * A class that holds the service response.

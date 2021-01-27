@@ -4,7 +4,7 @@ import com.kforce.urbanic.domain.case.core.BaseUseCase
 import com.kforce.urbanic.domain.exception.Failure
 import com.kforce.urbanic.extension.notNull
 import com.kforce.urbanic.repository.content.ContentImplementation
-import com.kforce.urbanic.repository.main.Resource
+import com.kforce.urbanic.repository.core.Resource
 import com.kforce.urbanic.repository.settings.BaseSettings
 import com.kforce.urbanic.service.content.ContentService
 import com.kforce.urbanic.util.EMPTY_STRING
