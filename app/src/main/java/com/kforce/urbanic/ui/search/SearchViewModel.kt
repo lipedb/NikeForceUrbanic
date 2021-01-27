@@ -1,11 +1,15 @@
 package com.kforce.urbanic.ui.search
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kforce.urbanic.domain.case.definitions.GetDefinitionsUseCase
-import com.kforce.urbanic.enum.SearchOperationType
+import com.kforce.urbanic.enums.SearchOperationType
 import com.kforce.urbanic.service.content.ContentService
+import com.kforce.urbanic.ui.entity.DefinitionExpandableItem
+import com.kforce.urbanic.ui.entity.DefinitionHeaderItem
+import com.kforce.urbanic.ui.entity.DefinitionItem
 import com.kforce.urbanic.util.EMPTY_STRING
 import com.kforce.urbanic.util.onFailure
 import com.kforce.urbanic.util.onSuccess
@@ -15,7 +19,9 @@ class SearchViewModel: ViewModel() {
 
     val operationType: MutableLiveData<SearchOperationType> = MutableLiveData()
     val state: MutableLiveData<SearchScreenState> = MutableLiveData()
-
+    val definitionsList = MediatorLiveData<List<DefinitionItem>>()
+    val definitionsFetchedList = MediatorLiveData<List<DefinitionItem>>()
+    
     //region Navigation
 
     /**
@@ -24,6 +30,31 @@ class SearchViewModel: ViewModel() {
     fun onSearchCommand() {
         switchCurrentOperation(SearchOperationType.SEARCH)
         updateState(SearchScreenState.OnSearchScreenStateTriggered)
+    }
+
+    /**
+     * This command is used on Definition Item Interaction
+     * @param definitionExpandableItem : [DefinitionExpandableItem]
+     */
+    fun onDefinitionItemInteractionCommand(definitionExpandableItem: DefinitionExpandableItem) {
+        val transformedList = mutableListOf<DefinitionItem>()
+        definitionsList.value?.forEach {
+            when (it) {
+                is DefinitionHeaderItem -> {
+                    transformedList.add(it)
+                }
+                is DefinitionExpandableItem -> {
+                    val isExpanded = when (definitionExpandableItem.id) {
+                        it.id -> {
+                            !it.expanded
+                        }
+                        else -> { false }
+                    }
+                    transformedList.add(DefinitionExpandableItem(id = it.id, text = it.text, exampleText = it.exampleText, upVote = it.upVote, downVote = it.downVote, expanded = isExpanded))
+                }
+            }
+            definitionsList.postValue(transformedList)
+        }
     }
 
     /**

@@ -4,6 +4,16 @@
     <item format="float" name="start_margin_guideline" type="dimen">0.05</item>
     <item format="float" name="end_guideline" type="dimen">0.9</item>
     <item format="float" name="end_margin_guideline" type="dimen">0.95</item>
+    <dimen name="margin_padding_10">10dp</dimen>
+    <dimen name="margin_padding_16">16dp</dimen>
+    <dimen name="margin_padding_18">18dp</dimen>
+    <dimen name="margin_padding_24">24dp</dimen>
     <dimen name="search_view_size">70dp</dimen>
     <dimen name="search_bar_edge_ignore">5dp</dimen>
+    <dimen name="definition_list_item_horizontal_padding">@dimen/margin_padding_16</dimen>
+    <dimen name="definitionHeaderDividerHeight">@dimen/margin_padding_16</dimen>
+    <dimen name="definitionItemDividerHeight">1dp</dimen>
+    <item format="float" name="enabled_alpha" type="dimen">1.0</item>
+    <item format="float" name="disabled_alpha" type="dimen">0.6</item>
+    <dimen name="lists_gradient_height">150dp</dimen>
 </resources>

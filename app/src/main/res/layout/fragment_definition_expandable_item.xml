@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+        <import type="com.kforce.urbanic.extension.ConverterExtension"/>
+        <variable
+            name="definitionExpandable"
+            type="com.kforce.urbanic.ui.entity.DefinitionExpandableItem" />
+
+        <variable
+            name="rightAngle"
+            type="float" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/definition_expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_padding_16"
+        android:paddingVertical="@dimen/margin_padding_24">
+
+        <TextView
+            android:id="@+id/definition_expandable_title"
+            android:layout_width="0dp"
+            android:text="@{definitionExpandable.title}"
+            android:layout_marginRight="@dimen/margin_padding_18"
+            android:layout_marginEnd="@dimen/margin_padding_18"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/iv_right_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Definition Item">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/iv_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="@{definitionExpandable.expanded ? ConverterExtension.convertStringToFloat(@string/reflex_angle) : ConverterExtension.convertStringToFloat(@string/right_angle) }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/definition_expandable_title"
+            app:layout_constraintBottom_toBottomOf="@+id/definition_expandable_title"/>
+
+        <TextView
+            android:id="@+id/definition_expanded_title"
+            android:layout_width="0dp"
+            android:visibility="@{definitionExpandable.expanded ? View.VISIBLE : View.GONE }"
+            android:text="@{definitionExpandable.exampleText}"
+            android:layout_marginTop="@dimen/margin_padding_10"
+            android:alpha="@dimen/disabled_alpha"
+            android:layout_marginEnd="@dimen/margin_padding_18"
+            android:layout_marginRight="@dimen/margin_padding_18"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/iv_right_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/definition_expandable_title"
+            tools:text="Definition Item">
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

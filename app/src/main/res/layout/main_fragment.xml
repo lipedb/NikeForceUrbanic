@@ -23,6 +23,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_definition_items"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fadingEdgeLength="@dimen/lists_gradient_height"
+        android:requiresFadingEdge="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/simple_search_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     <ProgressBar
         android:id="@+id/loading_screen"
         android:visibility="visible"

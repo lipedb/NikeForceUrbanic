@@ -5,4 +5,9 @@
     <string name="title_error">Oh no!!!</string>
     <string name="search_error">No results found</string>
     <string name="search_cancel">Cancel</string>
+
+    <!-- Rotation Angles -->
+    <string name="right_angle">90</string>
+    <string name="straight_angle">180</string>
+    <string name="reflex_angle">270</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.kforce.urbanic.enum
+package com.kforce.urbanic.enums
 
 enum class SearchOperationType {
     IDLE,

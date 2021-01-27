@@ -24,6 +24,10 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
 
     private lateinit var screenStateObserver: Observer<SearchScreenState>
 
+    private val adapter: DefinitionListAdapter by lazy {
+        DefinitionListAdapter()
+    }
+
     companion object {
         fun newInstance() = SearchFragment()
     }
@@ -32,9 +36,45 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
         super.onViewCreated(view, savedInstanceState)
         setToolbar(isVisible = false)
         setupEventObservers()
+        setupListeners()
+        setupRecyclerView()
+    }
+
+    /**
+     * sets up view listeners
+     */
+    private fun setupListeners() {
+        adapter.setOnDefinitionExpandableItemClickListener { viewModel.onDefinitionItemInteractionCommand(it) }
+    }
+
+    override fun onDestroyView() {
+        onDestroyRoutine()
+        super.onDestroyView()
+    }
+
+    private fun onDestroyRoutine() {
+        adapter.setOnDefinitionExpandableItemClickListener(null)
+        recycler_view_definition_items.adapter = null
+    }
+
+    /**
+     * Setup the recycler view's adapter
+     */
+    private fun setupRecyclerView() {
+        recycler_view_definition_items.setHasFixedSize(true)
+        recycler_view_definition_items.adapter = adapter
+        context?.let {
+            recycler_view_definition_items.addItemDecoration(
+                DefinitionItemDecoration(it, Pair(R.color.design_default_color_on_primary,R.color.design_default_color_on_secondary))
+            )
+        }
     }
 
     private fun setupEventObservers() {
+        viewModel.definitionsList.observe(viewLifecycleOwner, {
+            adapter.setList(it)
+        })
+
         screenStateObserver = Observer {
             it ?: return@Observer
                 when (it) {
