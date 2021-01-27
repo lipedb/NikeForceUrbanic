@@ -21,7 +21,7 @@ class GetDefinitionsUseCase(
     override suspend fun run(params: Any?): Either<Failure, DefinitionList> {
         var definitionList: Resource<DefinitionList>?
         try {
-            definitionList = withContext(Dispatchers.IO) {ContentImplementation(service).fetchDefinition(term)}
+            definitionList = withContext(Dispatchers.IO) {ContentImplementation(service).fetchDefinition(term, true)}
         } catch (exp: Exception) {
             return Either.Fail(GetDefinitionsUseCase(exp))
         }

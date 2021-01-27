@@ -21,9 +21,13 @@ class ContentImplementation(
     }
 
     override suspend fun fetchDefinition(
-        term: String
+        term: String,
+        withRapid: Boolean
     ): Resource<DefinitionList> {
-        val result = contentService.fetchDefinition(term)
+        val result = when {
+            withRapid -> { contentService.fetchWithRapidDefinition(term) }
+            else -> { contentService.fetchDefinition(term) }
+        }
         return when (result.status) {
             Resource.Status.SUCCESS -> {
                 Resource.success(result.data)

@@ -15,6 +15,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <include layout="@layout/empty_result"
+        android:id="@+id/empty_result_placeholder"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <ProgressBar
         android:id="@+id/loading_screen"
         android:visibility="visible"

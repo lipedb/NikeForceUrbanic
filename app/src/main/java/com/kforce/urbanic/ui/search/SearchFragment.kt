@@ -42,7 +42,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
                     SearchScreenState.OnSearchScreenStateTriggered -> setScreenAsSearch()
                     // SearchState.OnViewStateTriggered -> TODO()
                     SearchScreenState.OnResultRetrieving -> setScreenAsLoading()
-                    // SearchState.OnResultError -> TODO()
+                    SearchScreenState.OnResultError -> setScreenAsError()
                 }
             }
         viewModel.state.observe(viewLifecycleOwner, screenStateObserver)
@@ -63,6 +63,7 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
     }
 
     private fun setScreenAsLoading(){
+        empty_result_placeholder.toGone()
         video_background_poster.toGone()
         loading_screen.toVisible()
     }
@@ -76,10 +77,11 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
                 android.R.drawable.ic_menu_search
             )
         )
-        floating_action.setOnClickListener(View.OnClickListener { viewModel.onSearchCommand() })
+        floating_action.setOnClickListener { viewModel.onSearchCommand() }
         floating_action.toVisible()
         video_background_poster.toVisible()
         simple_search_view.text.clear()
+        empty_result_placeholder.toGone()
     }
 
     private fun setScreenAsSearch(){
@@ -87,7 +89,23 @@ class SearchFragment: BaseFragment<SearchViewModel>(R.layout.main_fragment, Sear
         back_button.setOnClickListener { viewModel.onSearchCancelCommand() }
         loading_screen.toGone(false)
         floating_action.toGone()
+        empty_result_placeholder.toGone()
         video_background_poster.toVisible()
+    }
+
+    private fun setScreenAsError() {
+        search_group.toGone()
+        loading_screen.toGone(false)
+        video_background_poster.toGone()
+        empty_result_placeholder.toVisible()
+        floating_action.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireActivity(),
+                    android.R.drawable.ic_menu_close_clear_cancel
+                )
+            )
+        floating_action.setOnClickListener { viewModel.onSearchCancelCommand() }
+        floating_action.toVisible()
     }
 
     private fun handleEnterKeyNavigation(setterView: EditText) {

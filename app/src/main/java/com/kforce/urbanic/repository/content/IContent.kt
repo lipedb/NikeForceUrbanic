@@ -19,5 +19,5 @@ interface IContent {
      * Fetches Definition for word
      *
      */
-    suspend fun fetchDefinition(term: String): Resource<DefinitionList>
+    suspend fun fetchDefinition(term: String, withRapid: Boolean = false): Resource<DefinitionList>
 }
